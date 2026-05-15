@@ -713,6 +713,47 @@ nav .nav-logo-txt strong { color: #2A2520; }
 .hero-name { color: #1A1410 !important; font-weight: 700 !important; }
 .hero-name em { color: #C6893F !important; font-weight: 700 !important; font-style: italic !important; }
 #hero { background: #FFFFFF; }
+
+/* ─── TARGETED FIXES ─────────────────────────── */
+
+/* FAQ text visible */
+.faq-q { color: #1A1410 !important; }
+.faq-q:hover { color: #C6893F !important; }
+.faq-a { color: #63666A !important; max-height: 0; overflow: hidden; }
+.faq-item.open .faq-a { max-height: 400px !important; padding-bottom: 24px; }
+.faq-item { border-top: 1px solid #E8E3DC !important; }
+.faq-item:last-child { border-bottom: 1px solid #E8E3DC !important; }
+#faq { background: #FFFFFF !important; }
+
+/* About — stats cards with gold accent */
+.about-stat {
+  background: #FAFAF8 !important;
+  border-left: 3px solid #C6893F;
+  padding: 24px 20px !important;
+}
+.stat-n { color: #C6893F !important; font-size: 44px !important; }
+.stat-l { color: #63666A !important; }
+
+/* About — spec rows with subtle bg */
+.about-spec-group:hover { background: #FAFAF8; }
+.about-spec-label { color: #C6893F !important; }
+
+/* About image — add gold frame accent */
+.about-img-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 44px; right: -8px;
+  width: 60%; height: 3px;
+  background: #C6893F;
+  z-index: 3;
+}
+
+/* Scrollbar — more visible */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #F4F1ED; }
+::-webkit-scrollbar-thumb { background: #C6893F; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #2A2520; }
+
 </style>
 </head>
 <body>
