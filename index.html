@@ -754,6 +754,18 @@ nav .nav-logo-txt strong { color: #2A2520; }
 ::-webkit-scrollbar-thumb { background: #C6893F; border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: #2A2520; }
 
+
+/* CERT BANNER */
+.hero-badges { position: relative; }
+.cert-banner-label {
+  font-family: var(--font-b); font-size: 9px; letter-spacing: .22em;
+  text-transform: uppercase; color: #C6893F;
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+  width: 100%;
+}
+.cert-banner-label::before { content: ''; width: 20px; height: 1px; background: #C6893F; }
+.cert-banner-label::after  { content: ''; flex: 1; height: 1px; background: #E8E3DC; }
+
 </style>
 </head>
 <body>
@@ -797,13 +809,13 @@ nav .nav-logo-txt strong { color: #2A2520; }
     <div class="hero-tag reveal">Cuenca · Ecuador</div>
     <h1 class="hero-name reveal rd1">Dr. David<br><em>Serrano</em><br>Andrade</h1>
     <p class="hero-role reveal rd2">Cirujano Plástico, Estético<br>y Reconstructivo</p>
-    <div class="hero-badges reveal rd3">
+    <div class="hero-badges reveal rd3"><div class="cert-banner-label">Certificaciones</div>
       <span class="badge">SENESCYT</span>
       <span class="badge">SECPRE</span>
       <span class="badge">ASPS</span>
       <span class="badge">ISAPS</span>
-      <span class="badge">Trauma Facial</span>
-      <span class="badge">Ortognática</span>
+      
+      
     </div>
     <div class="hero-btns reveal rd4">
       <a class="btn-p" href="https://wa.me/593991069306?text=Hola%20Doctor%2C%20quisiera%20agendar%20una%20consulta" target="_blank">
