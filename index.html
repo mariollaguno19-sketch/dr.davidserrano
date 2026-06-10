@@ -123,15 +123,15 @@ nav.scrolled{background:rgba(250,250,248,0.99);}
 
 .hero-name{
   font-family:'Times New Roman', Times, Georgia, serif;font-size:clamp(44px,5.5vw,84px);
-  font-weight:700;line-height:.95;letter-spacing:-.025em;
-  color:#1A1410;margin-bottom:10px;
+  font-weight:700;line-height:.82;letter-spacing:-.025em;
+  color:#1A1410;margin-bottom:6px;
 }
 .hero-name em{font-style:italic;font-weight:900;color:#C6893F !important;}
 
 .hero-role{
   font-family:var(--font-b);font-size:clamp(12px,1.2vw,14px);
   letter-spacing:.18em;text-transform:uppercase;color:var(--grey50);
-  margin-bottom:44px;line-height:1.8;
+  margin-bottom:44px;line-height:1.15;
 }
 
 .hero-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:52px;}
@@ -197,13 +197,13 @@ nav.scrolled{background:rgba(250,250,248,0.99);}
 .marquee-track:hover{animation-play-state:paused;}
 .marquee-item{
   font-family:var(--font-b);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--grey50);padding:0 40px;display:flex;align-items:center;gap:40px;white-space:nowrap;
+  color:#D4C9BB;padding:0 40px;display:flex;align-items:center;gap:40px;white-space:nowrap;
 }
-.marquee-item::after{content:'';display:block;width:3px;height:3px;background:var(--grey70);border-radius:50%;flex-shrink:0;}
+.marquee-item::after{content:'';display:block;width:3px;height:3px;background:#C6893F;border-radius:50%;flex-shrink:0;}
 @keyframes marq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
 /* ─── SECTIONS ────────────────────────────────────── */
-section{padding:clamp(80px,10vw,160px) max(24px,5vw);}
+section{padding:clamp(48px,6vw,90px) max(24px,5vw);}
 .si{max-width:1280px;margin:0 auto;}
 
 .s-label{
@@ -214,7 +214,7 @@ section{padding:clamp(80px,10vw,160px) max(24px,5vw);}
 
 .s-title{
   font-family:'Times New Roman', Times, Georgia, serif;font-size:clamp(32px,4vw,60px);
-  font-weight:500;line-height:1.02;letter-spacing:-.02em;color:#2A2520;margin-bottom:20px;
+  font-weight:500;line-height:.85;letter-spacing:-.02em;color:#2A2520;margin-bottom:14px;
 }
 .s-title em{font-style:italic;font-weight:400;color:#C6893F;}
 
@@ -621,7 +621,7 @@ nav .nav-logo-txt strong { color: #2A2520; }
 
 
 /* ─── RESULTADOS MERGED ──────────────────────────── */
-#resultados { background: #F4F1ED; padding: clamp(80px,10vw,160px) max(24px,5vw); }
+#resultados { background: #F4F1ED; padding: clamp(48px,6vw,90px) max(24px,5vw); }
 
 .res-header {
   display: flex; align-items: flex-end; justify-content: space-between;
@@ -655,12 +655,43 @@ nav .nav-logo-txt strong { color: #2A2520; }
 }
 .ba-item img {
   width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3/4;
-  filter: blur(16px) grayscale(20%); transform: scale(1.08);
+  filter: blur(16px) grayscale(20%);
   transition: filter .5s, transform .5s;
 }
 .ba-item:hover img,
 .ba-item.revealed img {
-  filter: blur(0) grayscale(0%); transform: scale(1);
+  filter: blur(0) grayscale(0%);
+}
+
+/* Ajustes de encuadre y zoom moderado para fotos de antes/después */
+/* 1. Casos de mamas (Aumento mamario) - sin zoom facial, centrados */
+.cat-mamas .ba-item img {
+  object-position: center center;
+  transform: scale(1.1);
+}
+.cat-mamas .ba-item:hover img,
+.cat-mamas .ba-item.revealed img {
+  transform: scale(1.0);
+}
+
+/* 2. Casos de Rinoplastia - zoom muy sutil y centrado en la nariz para apreciar el cambio */
+.cat-rinoplastia .ba-item img {
+  object-position: center 35%;
+  transform: scale(1.12);
+}
+.cat-rinoplastia .ba-item:hover img,
+.cat-rinoplastia .ba-item.revealed img {
+  transform: scale(1.05);
+}
+
+/* 3. Casos de Rostro (Blefaroplastia, etc.) - zoom moderado centrado en la cara */
+.cat-rostro .ba-item img {
+  object-position: center 30%;
+  transform: scale(1.28);
+}
+.cat-rostro .ba-item:hover img,
+.cat-rostro .ba-item.revealed img {
+  transform: scale(1.2);
 }
 .ba-tag {
   position: absolute; top: 12px; left: 12px;
@@ -1016,13 +1047,20 @@ footer { background: #2A2520 !important; }
 }
 
 
-/* ─── ABOUT SINGLE COL ──────────────────────────── */
+/* ─── ABOUT SINGLE COL → TWO-COLUMN LAYOUT ──────── */
 .about-grid {
-  display: block !important;
-  max-width: 760px;
+  display: grid !important;
+  grid-template-columns: 5fr 4fr;
+  gap: clamp(40px,5vw,80px);
+  align-items: start;
+  max-width: 100%;
+}
+.about-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 .about-quote-standalone {
-  margin-top: 32px;
   padding: 20px 24px;
   border-left: 3px solid #C6893F;
   background: #FAFAF8;
@@ -1034,15 +1072,18 @@ footer { background: #2A2520 !important; }
   color: #63666A;
   line-height: 1.6;
 }
+.about-stats {
+  margin-top: 0 !important;
+}
 
-/* Desktop: quote and stats side by side */
-@media(min-width: 769px) {
-  .about-grid { max-width: 100%; }
-  .about-stats-quote-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    align-items: start;
+/* Mobile: stack columns */
+@media(max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .about-stats {
+    grid-template-columns: 1fr 1fr !important;
   }
 }
 
@@ -1052,18 +1093,75 @@ a.nav-logo { text-decoration: none; cursor: pointer; }
 a.nav-logo:hover .nav-logo-img { opacity: .8; transition: opacity .2s; }
 
 
-/* ─── REELS ─────────────────────────────────────── */
-#reels { background: #FFFFFF; padding: clamp(80px,10vw,160px) max(24px,5vw); }
+/* ─── CASOS DE ÉXITO Y NOVEDADES ───────────────── */
+#casos-exito {
+  background: #F4F1ED;
+  padding: clamp(48px,6vw,90px) max(24px,5vw);
+  position: relative;
+  overflow: hidden;
+}
+#casos-exito::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C6893F 30%, #C6893F 70%, transparent);
+  opacity: .35;
+}
+.casos-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 56px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #E8E3DC;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.casos-ig-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-b);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #63666A;
+  transition: color .25s;
+  text-decoration: none;
+}
+.casos-ig-link:hover { color: #C6893F; }
+.casos-ig-link svg { transition: transform .3s var(--ease); }
+.casos-ig-link:hover svg { transform: translateX(3px); }
 .reels-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-top: 48px;
+  gap: 24px;
 }
-.reel-item { min-height: 400px; }
-.instagram-media { min-width: unset !important; max-width: 100% !important; }
-@media(max-width: 1024px) { .reels-grid { grid-template-columns: repeat(2, 1fr); } }
-@media(max-width: 560px)  { .reels-grid { grid-template-columns: 1fr; } }
+.reel-item {
+  min-height: 420px;
+  background: #FFFFFF;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(42,37,32,.06), 0 0 0 1px rgba(232,227,220,.5);
+  transition: box-shadow .4s var(--ease), transform .4s var(--ease);
+}
+.reel-item:hover {
+  box-shadow: 0 8px 40px rgba(42,37,32,.12), 0 0 0 1px #C6893F;
+  transform: translateY(-4px);
+}
+.instagram-media {
+  min-width: unset !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+@media(max-width: 1024px) {
+  .reels-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media(max-width: 560px) {
+  .reels-grid { grid-template-columns: 1fr; }
+  .reel-item { min-height: 380px; }
+}
 
 </style>
 </head>
@@ -1157,6 +1255,7 @@ a.nav-logo:hover .nav-logo-img { opacity: .8; transition: opacity .2s; }
 <section id="about">
   <div class="si">
     <div class="about-grid">
+      <!-- Columna izquierda: texto -->
       <div>
         <div class="s-label reveal">Acerca del Doctor</div>
         <h2 class="s-title reveal rd1">Excelencia<br><em>con propósito</em></h2>
@@ -1180,19 +1279,19 @@ a.nav-logo:hover .nav-logo-img { opacity: .8; transition: opacity .2s; }
 
   <p class="about-filosofia">"Seguridad, honestidad médica y bienestar real del paciente."</p>
 </div>
-        <div class="about-stats-quote-row">
+      </div>
+      <!-- Columna derecha: métricas + frase -->
+      <div class="about-col-right">
         <div class="about-stats reveal rd3">
           <div class="about-stat"><div class="stat-n" data-count="10">0</div><div class="stat-l">Años de experiencia</div></div>
           <div class="about-stat"><div class="stat-n" data-count="4">0</div><div class="stat-l">Certificaciones int.</div></div>
           <div class="about-stat"><div class="stat-n" data-count="500">0</div><div class="stat-l">Procedimientos</div></div>
           <div class="about-stat"><div class="stat-n" data-count="9">0</div><div class="stat-l">Especialidades</div></div>
         </div>
-
-      <div class="about-quote-standalone reveal rd4">
-        <p>"Resultados que transforman, con la seguridad que mereces."</p>
+        <div class="about-quote-standalone reveal rd4">
+          <p>"Resultados que transforman, con la seguridad que mereces."</p>
+        </div>
       </div>
-        </div><!-- /stats-quote-row -->
-      </div></div>
     </div>
   </div>
 </section>
@@ -1220,28 +1319,7 @@ a.nav-logo:hover .nav-logo-img { opacity: .8; transition: opacity .2s; }
   </div>
 </section>
 
-<!-- REELS -->
-<section id="reels">
-  <div class="si">
-    <div class="s-label reveal">En Acción</div>
-    <h2 class="s-title reveal rd1">Casos en<br><em>video</em></h2>
-    <div class="reels-grid">
-      <div class="reel-item reveal rd1">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DY3PjttNX3s/" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:0;box-shadow:none;margin:0;padding:0;width:100%;"></blockquote>
-      </div>
-      <div class="reel-item reveal rd2">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKpRuAsMBUM/" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:0;box-shadow:none;margin:0;padding:0;width:100%;"></blockquote>
-      </div>
-      <div class="reel-item reveal rd3">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKYS9rdJAqk/" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:0;box-shadow:none;margin:0;padding:0;width:100%;"></blockquote>
-      </div>
-      <div class="reel-item reveal rd4">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DF6PNaeJRAF/" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:0;box-shadow:none;margin:0;padding:0;width:100%;"></blockquote>
-      </div>
-    </div>
-  </div>
-</section>
-<script async src="https://www.instagram.com/embed.js"></script>
+
 
 <!-- REDES SOCIALES -->
 <section id="resultados">
@@ -1255,7 +1333,7 @@ a.nav-logo:hover .nav-logo-img { opacity: .8; transition: opacity .2s; }
     </div>
 
     <!-- AUMENTO MAMARIO -->
-    <div class="res-category reveal">
+    <div class="res-category reveal cat-mamas">
       <div class="res-cat-label">Aumento mamario</div>
       <div class="res-grid">
         <div class="ba-case">
@@ -1304,7 +1382,7 @@ a.nav-logo:hover .nav-logo-img { opacity: .8; transition: opacity .2s; }
     </div>
 
     <!-- RINOPLASTIA -->
-    <div class="res-category reveal rd1">
+    <div class="res-category reveal rd1 cat-rinoplastia">
       <div class="res-cat-label">Rinoplastia</div>
       <div class="res-grid">
         <div class="ba-case">
@@ -1353,7 +1431,7 @@ a.nav-logo:hover .nav-logo-img { opacity: .8; transition: opacity .2s; }
     </div>
 
     <!-- BLEFAROPLASTIA + LIPOINYECCIÓN -->
-    <div class="res-category reveal rd2">
+    <div class="res-category reveal rd2 cat-rostro">
       <div class="res-cat-label">Blefaroplastia + Lipoinyección facial</div>
       <div class="res-grid">
         <div class="ba-case">
@@ -1402,7 +1480,7 @@ a.nav-logo:hover .nav-logo-img { opacity: .8; transition: opacity .2s; }
     </div>
 
     <!-- BLEFAROPLASTIA CASO 2 -->
-    <div class="res-category reveal rd3">
+    <div class="res-category reveal rd3 cat-rostro">
       <div class="res-cat-label">Blefaroplastia + Lipoinyección + Levantamiento de cejas</div>
       <div class="res-grid">
         <div class="ba-case">
@@ -1450,7 +1528,7 @@ a.nav-logo:hover .nav-logo-img { opacity: .8; transition: opacity .2s; }
       </div>
     </div>
 
-    <div class="res-category reveal rd4">
+    <div class="res-category reveal rd4 cat-rostro">
       <div class="res-cat-label">Blefaroplastia + Lipoinyección facial — Caso 3</div>
       <div class="res-grid">
         <div class="ba-case">
@@ -1487,6 +1565,38 @@ a.nav-logo:hover .nav-logo-img { opacity: .8; transition: opacity .2s; }
     </div>
 
     <p class="res-disclaimer reveal">Resultados individuales pueden variar. Toda cirugía implica riesgos. Consulta con el especialista.</p>
+  </div>
+</section>
+
+<!-- CASOS DE ÉXITO Y NOVEDADES -->
+<section id="casos-exito">
+  <div class="si">
+    <div class="casos-header">
+      <div>
+        <div class="s-label reveal">Resultados Reales</div>
+        <h2 class="s-title reveal rd1">Casos de Éxito<br><em>y Novedades</em></h2>
+        <p class="s-body reveal rd2" style="margin-top:16px;">Descubre procedimientos reales, testimonios y las últimas novedades directamente desde nuestro consultorio.</p>
+      </div>
+      <a class="casos-ig-link reveal rd3" href="https://www.instagram.com/dr.davidserrano/" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        Seguir en Instagram
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+    </div>
+    <div class="reels-grid">
+      <div class="reel-item reveal rd1">
+        <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DY3PjttNX3s/?igsh=MWM0anllOGkycW00ZQ==" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:4px;box-shadow:none;margin:0;padding:0;width:100%;"></blockquote>
+      </div>
+      <div class="reel-item reveal rd2">
+        <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DKpRuAsMBUM/?igsh=MXJ0YjdkNG9vY2MzbQ==" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:4px;box-shadow:none;margin:0;padding:0;width:100%;"></blockquote>
+      </div>
+      <div class="reel-item reveal rd3">
+        <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DKYS9rdJAqk/?igsh=MTAyMnhmd3VzZXRzag==" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:4px;box-shadow:none;margin:0;padding:0;width:100%;"></blockquote>
+      </div>
+      <div class="reel-item reveal rd4">
+        <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DF6PNaeJRAF/?igsh=MWg0aDRvNjJlb3lwdg==" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:4px;box-shadow:none;margin:0;padding:0;width:100%;"></blockquote>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1584,6 +1694,7 @@ a.nav-logo:hover .nav-logo-img { opacity: .8; transition: opacity .2s; }
     </div>
   </div>
 </section>
+
 
 <!-- FAQ -->
 <section id="faq">
@@ -1792,5 +1903,6 @@ function toggleFaq(btn){
 })();
 
 </script>
+<script async src="https://www.instagram.com/embed.js"></script>
 </body>
 </html>
